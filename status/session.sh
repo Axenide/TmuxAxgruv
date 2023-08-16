@@ -1,7 +1,7 @@
 show_session() {
-  local index=$1 
-  local icon="$(get_tmux_option "@catppuccin_session_icon" "")"
-  local text="$(get_tmux_option "@catppuccin_session_text" "#S")"
+  local index=$1
+  local icon="$(get_tmux_option "@gruvbox_session_icon" "")"
+  local text="$(get_tmux_option "@gruvbox_session_text" "#S")"
 
   if [[ $index -eq 0 || $status_connect_separator == "no" ]]
   then
@@ -9,9 +9,9 @@ show_session() {
   else
     local show_left_separator="#[fg=$thm_green]#[bg=$thm_gray]#{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}$status_left_separator"
   fi
-  
+
   local show_icon="#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg]$icon "
-  
+
   if [[ $status_fill == "icon" ]]
   then
     local show_text="#[fg=$thm_fg,bg=$thm_gray] $text"
