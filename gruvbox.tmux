@@ -27,15 +27,15 @@ setw() {
 }
 
 build_window_icon() {
-  local window_status_icon_enable="$(get_tmux_option "@catppuccin_window_status_icon_enable" "yes")"
+  local window_status_icon_enable="$(get_tmux_option "@gruvbox_window_status_icon_enable" "yes")"
 
-  local custom_icon_window_last="$(get_tmux_option "@catppuccin_icon_window_last" "󰖰")"
-  local custom_icon_window_current="$(get_tmux_option "@catppuccin_icon_window_current" "󰖯")"
-  local custom_icon_window_zoom="$(get_tmux_option "@catppuccin_icon_window_zoom" "󰁌")"
-  local custom_icon_window_mark="$(get_tmux_option "@catppuccin_icon_window_mark" "󰃀")"
-  local custom_icon_window_silent="$(get_tmux_option "@catppuccin_icon_window_silent" "󰂛")"
-  local custom_icon_window_activity="$(get_tmux_option "@catppuccin_icon_window_activity" "󰖲")"
-  local custom_icon_window_bell="$(get_tmux_option "@catppuccin_icon_window_bell" "󰂞")"
+  local custom_icon_window_last="$(get_tmux_option "@gruvbox_icon_window_last" "󰖰")"
+  local custom_icon_window_current="$(get_tmux_option "@gruvbox_icon_window_current" "󰖯")"
+  local custom_icon_window_zoom="$(get_tmux_option "@gruvbox_icon_window_zoom" "󰁌")"
+  local custom_icon_window_mark="$(get_tmux_option "@gruvbox_icon_window_mark" "󰃀")"
+  local custom_icon_window_silent="$(get_tmux_option "@gruvbox_icon_window_silent" "󰂛")"
+  local custom_icon_window_activity="$(get_tmux_option "@gruvbox_icon_window_activity" "󰖲")"
+  local custom_icon_window_bell="$(get_tmux_option "@gruvbox_icon_window_bell" "󰂞")"
 
   if [ "$window_status_icon_enable" = "yes" ]
   then
@@ -61,10 +61,10 @@ build_window_format() {
   if [ "$window_status_enable" = "yes" ]
   then
     local icon="$( build_window_icon )"
-    text="$text $icon" 
+    text="$text $icon"
   fi
 
-  if [ "$fill" = "none" ] 
+  if [ "$fill" = "none" ]
   then
     local show_left_separator="#[fg=$thm_gray,bg=$thm_bg,nobold,nounderscore,noitalics]$window_left_separator"
     local show_number="#[fg=$thm_fg,bg=$thm_gray]$number"
@@ -74,7 +74,7 @@ build_window_format() {
 
   fi
 
-  if [ "$fill" = "all" ] 
+  if [ "$fill" = "all" ]
   then
     local show_left_separator="#[fg=$color,bg=$thm_bg,nobold,nounderscore,noitalics]$window_left_separator"
     local show_number="#[fg=$background,bg=$color]$number"
@@ -83,8 +83,8 @@ build_window_format() {
     local show_right_separator="#[fg=$color,bg=$thm_bg]$window_right_separator"
 
   fi
-  
-  if [ "$fill" = "number" ] 
+
+  if [ "$fill" = "number" ]
   then
     local show_number="#[fg=$background,bg=$color]$number"
     local show_middle_separator="#[fg=$color,bg=$background,nobold,nounderscore,noitalics]$window_middle_separator"
@@ -156,7 +156,7 @@ build_status_module() {
 
 load_modules() {
   local modules_list=$1
-  
+
   local modules_custom_path=$PLUGIN_DIR/custom
   local modules_status_path=$PLUGIN_DIR/status
   local modules_window_path=$PLUGIN_DIR/window
@@ -213,14 +213,14 @@ load_modules() {
 
 main() {
   local theme
-  theme="$(get_tmux_option "@catppuccin_flavour" "mocha")"
+  theme="$(get_tmux_option "@gruvbox" "dark")"
 
   # Aggregate all commands in one array
   local tmux_commands=()
 
   # NOTE: Pulling in the selected theme by the theme that's being set as local
   # variables.
-  # shellcheck source=catppuccin-frappe.tmuxtheme
+  # shellcheck source=gruvbox-frappe.tmuxtheme
   # https://github.com/dylanaraps/pure-sh-bible#parsing-a-keyval-file
   while IFS='=' read -r key val; do
       # Skip over lines containing comments.
@@ -230,7 +230,7 @@ main() {
       # '$key' stores the key.
       # '$val' stores the value.
       eval "local $key"="$val"
-  done < "${PLUGIN_DIR}/catppuccin-${theme}.tmuxtheme"
+  done < "${PLUGIN_DIR}/gruvbox-${theme}.tmuxtheme"
 
   # status
   set status "on"
@@ -254,11 +254,11 @@ main() {
 
   # --------=== Statusline
 
-  local window_left_separator="$(get_tmux_option "@catppuccin_window_left_separator" "█")"
-  local window_right_separator="$(get_tmux_option "@catppuccin_window_right_separator" "█")"
-  local window_middle_separator="$(get_tmux_option "@catppuccin_window_middle_separator" "█ ")"
-  local window_number_position="$(get_tmux_option "@catppuccin_window_number_position" "left")" # right, left
-  local window_status_enable="$(get_tmux_option "@catppuccin_window_status_enable" "no")" # right, left
+  local window_left_separator="$(get_tmux_option "@gruvbox_window_left_separator" "█")"
+  local window_right_separator="$(get_tmux_option "@gruvbox_window_right_separator" "█")"
+  local window_middle_separator="$(get_tmux_option "@gruvbox_window_middle_separator" "█ ")"
+  local window_number_position="$(get_tmux_option "@gruvbox_window_number_position" "left")" # right, left
+  local window_status_enable="$(get_tmux_option "@gruvbox_window_status_enable" "no")" # right, left
 
   local window_format=$( load_modules "window_default_format")
   local window_current_format=$( load_modules "window_current_format")
@@ -266,13 +266,13 @@ main() {
   setw window-status-format "$window_format"
   setw window-status-current-format "$window_current_format"
 
-  local status_left_separator="$(get_tmux_option "@catppuccin_status_left_separator" "")"
-  local status_right_separator="$(get_tmux_option "@catppuccin_status_right_separator" "█")"
-  local status_right_separator_inverse="$(get_tmux_option "@catppuccin_status_right_separator_inverse" "no")"
-  local status_connect_separator="$(get_tmux_option "@catppuccin_status_connect_separator" "yes")"
-  local status_fill="$(get_tmux_option "@catppuccin_status_fill" "icon")"
+  local status_left_separator="$(get_tmux_option "@gruvbox_status_left_separator" "")"
+  local status_right_separator="$(get_tmux_option "@gruvbox_status_right_separator" "█")"
+  local status_right_separator_inverse="$(get_tmux_option "@gruvbox_status_right_separator_inverse" "no")"
+  local status_connect_separator="$(get_tmux_option "@gruvbox_status_connect_separator" "yes")"
+  local status_fill="$(get_tmux_option "@gruvbox_status_fill" "icon")"
 
-  local status_modules="$(get_tmux_option "@catppuccin_status_modules" "application session")"
+  local status_modules="$(get_tmux_option "@gruvbox_status_modules" "application session")"
   local loaded_modules=$( load_modules "$status_modules")
 
   set status-left ""
