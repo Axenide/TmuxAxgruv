@@ -2,11 +2,11 @@
 # WARNING: hex colors can't contain capital letters
 
 # --> Gruvbox (Material)
-thm_bg="#504945"
+thm_bg="#222526"
 thm_fg="#d4be98"
 thm_cyan="#89b482"
 thm_black="#665c54"
-thm_gray="#d4be98"
+thm_gray="#504945"
 thm_magenta="#d3869b"
 thm_pink="#ea6962"
 thm_red="#ea6962"
