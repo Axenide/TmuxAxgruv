@@ -1,12 +1,12 @@
 # NOTE: you can use vars with $<var> and ${<var>} as long as the str is double quoted: ""
 # WARNING: hex colors can't contain capital letters
 
-# --> Gruvbox (Quantum)
-thm_bg="#252627"
-thm_fg="#dfcca5"
+# --> Gruvbox (Axgruv)
+thm_bg="#0a0b0c"
+thm_fg="#e0cda5"
 thm_cyan="#86ac8d"
 thm_black="#413e3a"
-thm_gray="#464341"
+thm_gray="#1b1d1d"
 thm_magenta="#d3869b"
 thm_pink="#e06338"
 thm_red="#f2594b"
