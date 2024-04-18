@@ -245,7 +245,7 @@ main() {
 
   # panes
   set pane-border-style "fg=${thm_gray}"
-  set pane-active-border-style "fg=${thm_blue}"
+  set pane-active-border-style "fg=${thm_red}"
 
   # windows
   setw window-status-activity-style "fg=${thm_fg},bg=${thm_bg},none"
